@@ -8,18 +8,31 @@ import { requestImages } from './services/unsplash-api';
 import { useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 
-function App() {
-  const [query, setQuery] = useState('');
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalUrl, setModalUrl] = useState('');
-  const [error, setError] = useState(false);
-  const [showBtn, setShowBtn] = useState(false);
-  const lastPhotoRef = useRef(null);
+type Image = {
+  id: string;
+  urls: {
+    regular: string;
+    small: string;
+  };
+  description: string;
+  likes: number;
+  user: {
+    name: string;
+  };
+};
 
-  useEffect(() => {
+function App() {
+  const [query, setQuery] = useState<string>('');
+  const [images, setImages] = useState<Image[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [modalUrl, setModalUrl] = useState<string>('');
+  const [error, setError] = useState<boolean>(false);
+  const [showBtn, setShowBtn] = useState<boolean>(false);
+  const lastPhotoRef = useRef<HTMLLIElement>(null);
+
+  useEffect((): void => {
     async function fetchImages() {
       if (!query.length) return;
 
@@ -49,7 +62,7 @@ function App() {
     fetchImages();
   }, [query, page]);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!lastPhotoRef.current) return;
 
     lastPhotoRef.current.scrollIntoView({
@@ -58,7 +71,7 @@ function App() {
     });
   }, [images]);
 
-  const handleSearch = async query => {
+  const handleSearch = async (query: string) => {
     setImages([]);
     setError(false);
     setShowBtn(false);
@@ -70,7 +83,7 @@ function App() {
     setPage(p => p + 1);
   };
 
-  const openModal = url => {
+  const openModal = (url: string) => {
     setModalUrl(url);
     setIsOpen(true);
   };

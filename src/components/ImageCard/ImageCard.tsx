@@ -1,6 +1,13 @@
 import css from './ImageCard.module.css';
 
-const ImageCard = ({ url, description, author, likes }) => {
+type Card = {
+  url: string;
+  description: string;
+  author: string;
+  likes: number;
+};
+
+const ImageCard = ({ url, description, author, likes }: Card) => {
   return (
     <div className={css.imageCard}>
       <img

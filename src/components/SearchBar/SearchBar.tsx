@@ -1,11 +1,17 @@
-import css from './SearchBar.module.css';
+import { FormEvent } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import css from './SearchBar.module.css';
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = e => {
+type Props = {
+  onSearch: (query: string) => void;
+};
+
+const SearchBar = ({ onSearch }: Props) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target;
-    const query = form.elements.query.value;
+    const form = e.target as HTMLFormElement;
+    const queryInput = form.elements.namedItem('query') as HTMLInputElement;
+    const query = queryInput.value;
 
     if (!query.trim().length) {
       toast.error('Input field is empty. Please provide a value.');
