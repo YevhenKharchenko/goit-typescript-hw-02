@@ -10,8 +10,7 @@ const SearchBar = ({ onSearch }: Props) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-    const queryInput = form.elements.namedItem('query') as HTMLInputElement;
-    const query = queryInput.value;
+    const query = (form.elements.namedItem('query') as HTMLInputElement).value;
 
     if (!query.trim().length) {
       toast.error('Input field is empty. Please provide a value.');
