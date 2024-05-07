@@ -83,12 +83,12 @@ function App() {
     setPage(p => p + 1);
   };
 
-  const openModal = (url: string) => {
+  const openModal = (url: string): void => {
     setModalUrl(url);
     setIsOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsOpen(false);
   };
 
