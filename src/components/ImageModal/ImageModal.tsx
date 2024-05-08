@@ -3,13 +3,13 @@ import ReactModal from 'react-modal';
 
 ReactModal.setAppElement(document.getElementById('root') as HTMLElement);
 
-type Props = {
+interface IImageModalProps {
   modalUrl: string;
   modalIsOpen: boolean;
   closeModal: () => void;
-};
+}
 
-const ImageModal = ({ modalUrl, modalIsOpen, closeModal }: Props) => {
+const ImageModal = ({ modalUrl, modalIsOpen, closeModal }: IImageModalProps) => {
   return (
     <ReactModal
       isOpen={modalIsOpen}

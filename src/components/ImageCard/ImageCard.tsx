@@ -1,13 +1,18 @@
 import css from './ImageCard.module.css';
 
-type Card = {
+interface IImageCardProps {
   url: string;
   description: string;
   author: string;
   likes: number;
-};
+}
 
-const ImageCard = ({ url, description, author, likes }: Card) => {
+const ImageCard: React.FC<IImageCardProps> = ({
+  url,
+  description,
+  author,
+  likes,
+}) => {
   return (
     <div className={css.imageCard}>
       <img

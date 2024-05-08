@@ -2,11 +2,11 @@ import { FormEvent } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import css from './SearchBar.module.css';
 
-type Props = {
+interface ISearchBarProps {
   onSearch: (query: string) => void;
-};
+}
 
-const SearchBar = ({ onSearch }: Props) => {
+const SearchBar: React.FC<ISearchBarProps> = ({ onSearch }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;

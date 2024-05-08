@@ -1,29 +1,17 @@
+import toast from 'react-hot-toast';
+import { useState, useEffect, useRef } from 'react';
+import { requestImages } from './services/unsplash-api';
+import { IImage } from './types';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import Loader from './components/Loader/Loader';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
-import { requestImages } from './services/unsplash-api';
-import { useState, useEffect, useRef } from 'react';
-import toast from 'react-hot-toast';
-
-type Image = {
-  id: string;
-  urls: {
-    regular: string;
-    small: string;
-  };
-  description: string;
-  likes: number;
-  user: {
-    name: string;
-  };
-};
 
 function App() {
   const [query, setQuery] = useState<string>('');
-  const [images, setImages] = useState<Image[]>([]);
+  const [images, setImages] = useState<IImage[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);

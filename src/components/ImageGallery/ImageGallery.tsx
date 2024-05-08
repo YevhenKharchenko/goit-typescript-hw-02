@@ -1,27 +1,15 @@
-import ImageCard from '../ImageCard/ImageCard';
-import css from './ImageGallery.module.css';
 import { forwardRef, Ref } from 'react';
+import ImageCard from '../ImageCard/ImageCard';
+import { IImage } from '../../types';
+import css from './ImageGallery.module.css';
 
-type Image = {
-  id: string;
-  urls: {
-    regular: string;
-    small: string;
-  };
-  description: string;
-  likes: number;
-  user: {
-    name: string;
-  };
-};
-
-type Props = {
-  images: Image[];
+interface IImageGalleryProps {
+  images: IImage[];
   openModal: (url: string) => void;
-};
+}
 
 const ImageGallery = forwardRef(
-  ({ images, openModal }: Props, ref: Ref<HTMLLIElement>) => {
+  ({ images, openModal }: IImageGalleryProps, ref: Ref<HTMLLIElement>) => {
     return (
       <ul className={css.list}>
         {images.map((el, idx) => {
