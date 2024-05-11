@@ -1,10 +1,11 @@
+import { IImage } from '../types';
 import axios from 'axios';
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
 interface Response {
   total_pages: number;
-  results: any[];
+  results: IImage[];
 }
 
 export const requestImages = async (
